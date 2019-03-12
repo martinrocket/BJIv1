@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"runtime"
 	"testing"
 )
@@ -19,7 +20,10 @@ func TestOS(t *testing.T) {
 	want2 := "darwin"
 	want3 := "windows"
 	got := clearScreen(runtime.GOOS)
-	if want1 != got || want2 != got || want3 != got {
+	switch got {
+	case want1, want2, want3:
+		fmt.Println("Passed OS test.")
+	default:
 		t.Errorf("wanted %v, %v, or %v, but got %v", want1, want2, want3, got)
 	}
 }
